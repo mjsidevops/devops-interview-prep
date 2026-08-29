@@ -6,8 +6,7 @@ Steps:
  2. Create a User Assigned Managed Identity and give access(Key Vault Secrets User) to respective key vault
  3. Create the Kubernetes ServiceAccount with client ID of the MI associated
 
-
- apiVersion: v1
+    apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: my-app-sa
