@@ -83,6 +83,7 @@ spec:
 ```
 
 
+
 2. And how do you achieve the secret rotation with zero-downtime or without restarting the pod?
 
   - While creating the AKS, enable Secrets Store CSI Driver with auto-rotation enabled.
