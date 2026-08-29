@@ -17,7 +17,7 @@ metadata:
     
  5. Create the Federated Identity Credential which associates AKS OIDC issue + k8s service account + MI
  6. Create SecretProvideClass
-```
+```yaml
 apiVersion: secrets-store.csi.x-k8s.io/v1
 kind: SecretProviderClass
 metadata:
@@ -45,7 +45,7 @@ spec:
 ```
 
   6. Mount it into the Pod
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -89,7 +89,7 @@ spec:
   - When I rotate the secret in Key Vault, the CSI driver periodically polls Key Vault and updates the mounted secret. The default rotation interval is two minutes, and it can be customized. 
   - The Pod itself doesn't need to restart when the secret is consumed through the mounted CSI volume.
 
-  ```
+  ```icl
   key_vault_secrets_provider {
      secret_rotation_enabled  = true
      secret_rotation_interval = "2m"
