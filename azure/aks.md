@@ -5,12 +5,15 @@ Steps:
  1. While creating AKS enable the Key Vault CSI provider, which actually installs the CSI driver on the k8s cluster.
  2. Create a User Assigned Managed Identity and give access(Key Vault Secrets User) to respective key vault
  3. Create the Kubernetes ServiceAccount with client ID of the MI associated
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-     name: my-app-sa
-     annotations:
-       azure.workload.identity/client-id: <managed-identity-client-id>
+
+
+ apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: my-app-sa
+  annotations:
+    azure.workload.identity/client-id: <managed-identity-client-id>
+    
  5. Create the Federated Identity Credential which associates AKS OIDC issue + k8s service account + MI
  6. Create SecretProvideClass apiVersion: secrets-store.csi.x-k8s.io/v1
 kind: SecretProviderClass
