@@ -81,25 +81,7 @@ spec:
             volumeAttributes:
               secretProviderClass: azure-kv-secrets
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br><br><br>
 
 2. And how do you achieve the secret rotation with zero-downtime or without restarting the pod?
 
