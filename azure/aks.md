@@ -6,15 +6,19 @@ Steps:
  2. Create a User Assigned Managed Identity and give access(Key Vault Secrets User) to respective key vault
  3. Create the Kubernetes ServiceAccount with client ID of the MI associated
 
-    apiVersion: v1
+```yaml
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: my-app-sa
   annotations:
     azure.workload.identity/client-id: <managed-identity-client-id>
+```
     
  5. Create the Federated Identity Credential which associates AKS OIDC issue + k8s service account + MI
- 6. Create SecretProvideClass apiVersion: secrets-store.csi.x-k8s.io/v1
+ 6. Create SecretProvideClass
+```
+apiVersion: secrets-store.csi.x-k8s.io/v1
 kind: SecretProviderClass
 metadata:
   name: azure-kv-secrets
@@ -38,10 +42,11 @@ spec:
         - |
           objectName: API_KEY
           objectType: secret
+```
 
   6. Mount it into the Pod
-
-     apiVersion: apps/v1
+```
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-app
@@ -75,6 +80,7 @@ spec:
 
             volumeAttributes:
               secretProviderClass: azure-kv-secrets
+```
 
 
 2. And how do you achieve the secret rotation with zero-downtime or without restarting the pod?
@@ -83,8 +89,9 @@ spec:
   - When I rotate the secret in Key Vault, the CSI driver periodically polls Key Vault and updates the mounted secret. The default rotation interval is two minutes, and it can be customized. 
   - The Pod itself doesn't need to restart when the secret is consumed through the mounted CSI volume.
 
+  ```
   key_vault_secrets_provider {
      secret_rotation_enabled  = true
      secret_rotation_interval = "2m"
   }
-
+  ```
