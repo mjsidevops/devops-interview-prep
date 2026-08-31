@@ -11,6 +11,7 @@
    
 Azure Front Door is an advanced content delivery network (CDN) for the cloud. It's designed to provide fast, reliable, and secure access to your applications' static and dynamic web content globally. By using Microsoft's extensive global edge network, Azure Front Door provides efficient content delivery through global and local points of presence (PoPs) strategically positioned close to both enterprise and consumer users.
 
+```yaml
 User
  |
  v
@@ -27,6 +28,7 @@ Front Door Edge
  |
  v
 Origin
+```
 
 It is particularly useful when an application has origins deployed across multiple regions and we need a single global entry point.
 Application Gateway = regional Layer 7 traffic management inside/around a VNet.
