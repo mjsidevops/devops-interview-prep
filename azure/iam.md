@@ -1,4 +1,6 @@
 1. What is the difference between Service principal and Managed Identity?
+
+```yaml
    |                                     | Service Principal                           | Managed Identity                                     |
 | ----------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
 | **What is it?**                     | Identity for an application/service         | Identity for an **Azure resource/workload**          |
@@ -9,3 +11,4 @@
 | **On-prem VM can directly use it?** | ✅ Yes                                       | ❌ Not as a native managed identity                   |
 | **Typical use**                     | External/on-prem apps, CI/CD                | Azure VM, AKS, App Service accessing Azure resources |
 | **Security**                        | Good, but credential management is required | Usually preferred for Azure workloads                |
+```
