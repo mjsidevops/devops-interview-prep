@@ -1,7 +1,7 @@
 1. What is the difference between Service principal and Managed Identity?
 
 ```yaml
-   |                                     | Service Principal                           | Managed Identity                                     |
+|                                     | Service Principal                           | Managed Identity                                     |
 | ----------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
 | **What is it?**                     | Identity for an application/service         | Identity for an **Azure resource/workload**          |
 | **Credentials**                     | Secret or certificate typically required    | **No secret to manage**                              |
