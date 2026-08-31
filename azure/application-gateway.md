@@ -5,25 +5,46 @@
 - Application Gateway Private Link allows an Application Gateway frontend to be exposed privately through Azure Private Link. The Application Gateway acts as the service provider using a Private Link Service, while consumers connect from their VNet through a Private Endpoint. This allows private connectivity without exposing the Application Gateway to the public internet.
 
 <img width="684" height="294" alt="image" src="https://github.com/user-attachments/assets/2ac72968-e1f9-46f0-9c4f-8a7c72b2a25b" />
+<br><br>
 
-
-
-
-
-2. What is Hub and Spoke network topology
+2. What is Azure Front door?
    
-   <img width="1600" height="1168" alt="image" src="https://github.com/user-attachments/assets/fbb6079c-7ff2-4cfc-9b09-c0228fc8d55e" />
+Azure Front Door is an advanced content delivery network (CDN) for the cloud. It's designed to provide fast, reliable, and secure access to your applications' static and dynamic web content globally. By using Microsoft's extensive global edge network, Azure Front Door provides efficient content delivery through global and local points of presence (PoPs) strategically positioned close to both enterprise and consumer users.
 
-   - In Azure, a Hub-and-Spoke network is a common architecture where you create one central Hub VNet for shared networking services, and connect multiple Spoke VNets to it.
-   - In a hub-and-spoke topology:
-      - A hub virtual network acts as the central point of connectivity. It contains shared network services such as a firewall, gateway, and Bastion host.
-      - Spoke virtual networks peer to the hub. Each spoke hosts a workload: an application, a team environment, or an isolated service. Spokes contain the actual application workloads.
-      - VNet peering is non-transitive. Spokes can reach the hub, but spokes can't reach each other directly through the hub unless you configure routing or direct peering between them.
-      - The Hub and Spokes are normally connected using VNet peering.
-    
+User
+ |
+ v
+Front Door Edge
+ |
+ +---- Cached content?
+ |        |
+ |       YES
+ |        |
+ |        v
+ |      User
+ |
+ NO
+ |
+ v
+Origin
 
+It is particularly useful when an application has origins deployed across multiple regions and we need a single global entry point.
+Application Gateway = regional Layer 7 traffic management inside/around a VNet.
+Azure Front Door = global Layer 7 traffic management at Microsoft's edge.
 
-   Summary:
-   Hub-and-Spoke is a network architecture where a central Hub VNet provides shared networking and security services, while multiple Spoke VNets host application workloads. The hub and    spokes are connected using VNet peering. Services such as Azure Firewall, VPN/ExpressRoute Gateway, Bastion and DNS can be centralized in the hub. This provides network isolation,  centralized security and routing, and makes the architecture easier to manage as the number of workloads grows.
+Front Door does the global job
+Global entry point
+Global traffic distribution
+Edge acceleration
+CDN/cache
+Global WAF
+Cross-region failover
 
-     
+Application Gateway does the regional job
+Regional Layer 7 routing
+Regional WAF
+TLS termination
+Backend routing
+Integration with resources in the VNet
+
+Both are Layer 7 HTTP/HTTPS services, but their scope and purpose are different. Application Gateway is a regional application delivery service that is deployed in a VNet and is used for regional Layer 7 routing, TLS termination and WAF. Azure Front Door is a global application delivery service that operates through Microsoft's global edge network and is used for global traffic routing, edge caching, acceleration and cross-region failover. For a multiregion application, we can use Front Door as the global entry point and Application Gateway behind it for regional traffic management.
