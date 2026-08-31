@@ -31,22 +31,11 @@ Origin
 ```
 
 It is particularly useful when an application has origins deployed across multiple regions and we need a single global entry point.
+<br><br>
+
+2. Difference between Azure Front door vs Application gateway?
+   
 Application Gateway = regional Layer 7 traffic management inside/around a VNet.
 Azure Front Door = global Layer 7 traffic management at Microsoft's edge.
-
-Front Door does the global job
-Global entry point
-Global traffic distribution
-Edge acceleration
-CDN/cache
-Global WAF
-Cross-region failover
-
-Application Gateway does the regional job
-Regional Layer 7 routing
-Regional WAF
-TLS termination
-Backend routing
-Integration with resources in the VNet
 
 Both are Layer 7 HTTP/HTTPS services, but their scope and purpose are different. Application Gateway is a regional application delivery service that is deployed in a VNet and is used for regional Layer 7 routing, TLS termination and WAF. Azure Front Door is a global application delivery service that operates through Microsoft's global edge network and is used for global traffic routing, edge caching, acceleration and cross-region failover. For a multiregion application, we can use Front Door as the global entry point and Application Gateway behind it for regional traffic management.
