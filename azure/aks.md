@@ -95,3 +95,10 @@ spec:
      secret_rotation_interval = "2m"
   }
   ```
+<br><br>
+
+3. How do you troubleshoot if the cluster node pool unable to scale?
+   Answer:
+    1. Check Cluster Autoscaler events/status
+    2. Node pool minCount / maxCount and autoscaler configuration
+    3. Subnet IP availability
