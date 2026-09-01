@@ -165,4 +165,4 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
    9. Runtime security for containers, monitor and alert any vulnarabilities using tools like Falco, Aqua
    10. Monitoring and auditing: Azure Activity Logs, Azure Monitor, Log Analytics, Microsoft Defender for Cloud, Datadog
    11. Azure Policy: Use Azure Policy for AKS to enforce security rules.
-         
+         Ex: "Privileged containers are not allowed."
