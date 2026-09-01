@@ -40,13 +40,13 @@ In Azure: Defender for cloud, Azure policy
    - ZTA enables businesses to support remote work, minimize risk, ease regulatory compliance, save time, and strengthen security postures.
    - Zero Trust solutions include multifactor authentication (MFA) and identity and access management systems.
    - Zero Trust is built on the principle of “never trust, always verify”, meaning no user, device, or system is inherently trusted—trust must be established and continuously validated for every access request.
-   - Verify explicitly
+   - Verify explicitly: 
 Zero Trust handles every attempt to access business resources as if the request originated from an open network. Rather than verifying credentials once at the point of entry, ZTA regularly and comprehensively evaluates data points—such as the user’s identity, location, and device—in real time to identify red flags and help ensure only authorized users and devices can access your network.
 
-   - Use least privileged access
+   - Use least privileged access: 
 ZTA provides each user with only the minimum level of access needed to perform their tasks. Limiting access rights in this way helps your business minimize the damage that a compromised account can cause.
 
-   - Assume breach
+   - Assume breach: 
 Zero Trust operates under the premise that breaches are inevitable. Instead of solely focusing on preventing them, this approach also proactively anticipates cyberattacks by assuming users, devices, and systems across your business are already compromised.
 
 
