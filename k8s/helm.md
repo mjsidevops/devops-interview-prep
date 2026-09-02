@@ -144,36 +144,36 @@ my-app/
 ```
 
 - helms commands:
-   -> helm create myapp
+   - helm create myapp
       - Creates a new Helm chart with a standard directory structure.<br>
-   -> helm show values ./myapp
+   - helm show values ./myapp
       - Displays the chart's default values.yaml<br>
-   -> helm lint ./myapp
+   - helm lint ./myapp
       - Checks the chart for the possible issues or errors<br>
-   -> helm template myapp ./myapp
+   - helm template myapp ./myapp
       - Renders Helm templates into Kubernetes YAML without deploying them
-   -> helm install myapp ./myapp --dry-run --debug
+   - helm install myapp ./myapp --dry-run --debug
       - Simulates an installation without actually installing the release.
-   -> helm list -A
+   - helm list -A
       - Lists all releases in all namespaces
-   -> helm status myapp
+   - helm status myapp
       - checks the status of the release
-   -> helm history myapp
+   - helm history myapp
       - Shows the revision history of the release
       - For every new release there will be Revision like 1, 2, 3 ... with status(failed, deployed)
-   -> helm rollback myapp 3
+   - helm rollback myapp 3
       - Rolls the release back to revision 3
-   -> helm get values myapp
+   - helm get values myapp
       - Shows values associated with the deployed release.
-   -> helm uninstall myapp
+   - helm uninstall myapp
       - Removes a Helm release and its associated Kubernetes resources.
-   -> helm repo add bitnami https://charts.bitnami.com/bitnami
+   - helm repo add bitnami https://charts.bitnami.com/bitnami
       - Adds a Helm chart repository.
-   -> helm upgrade myapp ./chart --wait
+   - helm upgrade myapp ./chart --wait
       - Waits for resources to become ready before considering the operation successful.
-   -> helm upgrade myapp ./chart --wait --timeout 10m
+   - helm upgrade myapp ./chart --wait --timeout 10m
       - Controls how long Helm waits for operations.
-   -> helm upgrade myapp ./chart --atomic
+   - helm upgrade myapp ./chart --atomic
       - If the upgrade fails, Helm rolls the release back.
   
   
