@@ -145,36 +145,36 @@ my-app/
 
 - helms commands:
    - helm create myapp
-      - Creates a new Helm chart with a standard directory structure.<br>
+      - Creates a new Helm chart with a standard directory structure. <br><br>
    - helm show values ./myapp
-      - Displays the chart's default values.yaml<br>
+      - Displays the chart's default values.yaml <br><br>
    - helm lint ./myapp
-      - Checks the chart for the possible issues or errors<br>
+      - Checks the chart for the possible issues or errors <br><br>
    - helm template myapp ./myapp
-      - Renders Helm templates into Kubernetes YAML without deploying them
+      - Renders Helm templates into Kubernetes YAML without deploying them <br><br>
    - helm install myapp ./myapp --dry-run --debug
-      - Simulates an installation without actually installing the release.
+      - Simulates an installation without actually installing the release. <br><br>
    - helm list -A
-      - Lists all releases in all namespaces
+      - Lists all releases in all namespaces <br><br>
    - helm status myapp
-      - checks the status of the release
+      - checks the status of the release <br><br>
    - helm history myapp
-      - Shows the revision history of the release
-      - For every new release there will be Revision like 1, 2, 3 ... with status(failed, deployed)
+      - Shows the revision history of the release <br><br>
+      - For every new release there will be Revision like 1, 2, 3 ... with status(failed, deployed) <br><br>
    - helm rollback myapp 3
-      - Rolls the release back to revision 3
+      - Rolls the release back to revision 3 <br><br>
    - helm get values myapp
-      - Shows values associated with the deployed release.
+      - Shows values associated with the deployed release. <br><br>
    - helm uninstall myapp
-      - Removes a Helm release and its associated Kubernetes resources.
+      - Removes a Helm release and its associated Kubernetes resources. <br><br>
    - helm repo add bitnami https://charts.bitnami.com/bitnami
-      - Adds a Helm chart repository.
+      - Adds a Helm chart repository. <br><br>
    - helm upgrade myapp ./chart --wait
-      - Waits for resources to become ready before considering the operation successful.
+      - Waits for resources to become ready before considering the operation successful. <br><br>
    - helm upgrade myapp ./chart --wait --timeout 10m
-      - Controls how long Helm waits for operations.
+      - Controls how long Helm waits for operations. <br><br>
    - helm upgrade myapp ./chart --atomic
-      - If the upgrade fails, Helm rolls the release back.
+      - If the upgrade fails, Helm rolls the release back. <br><br>
   
   
    
