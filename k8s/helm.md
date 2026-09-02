@@ -60,13 +60,14 @@ containers:
 
 - How do you override values.yaml?
   - by using -f / --values
-    --> helm upgrade myapp ./chart -f values-prod.yaml
+    - helm upgrade myapp ./chart -f values-prod.yaml
     
   - Also you can use --set
-    --> helm upgrade myapp ./chart --set image.tag=1.6.0
+    - helm upgrade myapp ./chart --set image.tag=1.6.0
 
-  - Multiple values files 
-    --> helm upgrade myapp ./chart -f values.yaml -f values-prod.yaml
+  - Multiple values files, 
+    - helm upgrade myapp ./chart -f values.yaml -f values-prod.yaml
+    - You can specify the '--values'/'-f' flag multiple times. The priority will be given to the last (right-most) file specified. For example, if both myvalues.yaml and override.yaml contained a key called 'Test', the value set in override.yaml would take precedence.
 
 - _helpers.tpl
    - It is a template file used to define reusable helper functions/templates that can be used across your Helm chart.
@@ -112,4 +113,10 @@ metadata:
   labels:
     {{- include "myapp.labels" . | nindent 4 }}
 ```
-   
+
+- What is the difference between helm install and helm upgrade?
+  - Helm install creates new release where helm upgrade updates an existing release
+  - If you use both install and upgrade together
+     - If the release doesn't exist → install it.
+     - If it exists → upgrade it.
+    
