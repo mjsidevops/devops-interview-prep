@@ -120,3 +120,61 @@ metadata:
      - If the release doesn't exist → install it.
      - If it exists → upgrade it.
     
+- Helm hooks:
+   - Helm hooks let you tell Helm: "Run this Kubernetes resource before or after a particular Helm operation."
+   - For example, you might want to:
+       Run database migrations before deploying the application.
+       Run cleanup tasks after uninstalling a release.
+   - Some important hooks are: pre-install, post-install, pre-upgrade, post-upgrade, pre-rollback, post-rollback, post-delete
+
+- Subcharts:
+   - In Helm, a subchart is a Helm chart included inside another Helm chart.
+   - Parent chart → contains one or more child/subcharts
+   - Subcharts are defined as a dependency in the parent's Chart.yaml
+   - Example:
+```yaml
+my-app/
+├── Chart.yaml
+├── values.yaml
+├── templates/
+│   └── deployment.yaml
+└── charts/
+    ├── redis/
+    └── postgresql/
+```
+
+- helms commands:
+   -> helm create myapp
+      - Creates a new Helm chart with a standard directory structure.<br>
+   -> helm show values ./myapp
+      - Displays the chart's default values.yaml<br>
+   -> helm lint ./myapp
+      - Checks the chart for the possible issues or errors<br>
+   -> helm template myapp ./myapp
+      - Renders Helm templates into Kubernetes YAML without deploying them
+   -> helm install myapp ./myapp --dry-run --debug
+      - Simulates an installation without actually installing the release.
+   -> helm list -A
+      - Lists all releases in all namespaces
+   -> helm status myapp
+      - checks the status of the release
+   -> helm history myapp
+      - Shows the revision history of the release
+      - For every new release there will be Revision like 1, 2, 3 ... with status(failed, deployed)
+   -> helm rollback myapp 3
+      - Rolls the release back to revision 3
+   -> helm get values myapp
+      - Shows values associated with the deployed release.
+   -> helm uninstall myapp
+      - Removes a Helm release and its associated Kubernetes resources.
+   -> helm repo add bitnami https://charts.bitnami.com/bitnami
+      - Adds a Helm chart repository.
+   -> helm upgrade myapp ./chart --wait
+      - Waits for resources to become ready before considering the operation successful.
+   -> helm upgrade myapp ./chart --wait --timeout 10m
+      - Controls how long Helm waits for operations.
+   -> helm upgrade myapp ./chart --atomic
+      - If the upgrade fails, Helm rolls the release back.
+  
+  
+   
