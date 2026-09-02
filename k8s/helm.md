@@ -67,4 +67,49 @@ containers:
 
   - Multiple values files 
     --> helm upgrade myapp ./chart -f values.yaml -f values-prod.yaml
+
+- _helpers.tpl
+   - It is a template file used to define reusable helper functions/templates that can be used across your Helm chart.
+   - It is commonly used to avoid repeating things like names, labels, selectors, and common Kubernetes metadata.
+   - We typically use define to create helpers and include to consume them from templates like Deployment and Service, which improves reusability and maintainability of the Helm chart.
+ 
+   Example:
+    Suppose you have this in _helpers.tpl:
+```yaml
+{{- define "myapp.fullname" -}}
+{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" }}
+{{- end }}
+```
+
+   - This defines a reusable template called "my app.fullname"
+   - You can use it from deployment.yaml:
+```yaml
+metadata:
+  name: {{ include "myapp.fullname" . }}
+```
+   - If your Helm release is 'helm install my-release myapp' then name: my-release-myapp
+- Why do we need helpers.tpl
+  - Imagine you need the same labels in your Deployment, Service and ConfigMap.
+  - Instead of repeating:
+```yaml
+labels:
+  app: myapp
+  environment: production
+  version: "1.0"
+```
+- you can define a helper:
+```yaml
+{{- define "myapp.labels" }}
+app.kubernetes.io/name: {{ include "myapp.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+{{- end }}
+```
+- Then in each k8s manifest
+```yaml
+metadata:
+  labels:
+    {{- include "myapp.labels" . | nindent 4 }}
+```
    
