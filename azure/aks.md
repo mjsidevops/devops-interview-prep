@@ -15,7 +15,7 @@ metadata:
     azure.workload.identity/client-id: <managed-identity-client-id>
 ```
     
- 5. Create the Federated Identity Credential which associates AKS OIDC issue + k8s service account + MI
+ 5. Create the Federated Identity Credential which associates AKS OIDC issuer + k8s service account + MI
  6. Create SecretProvideClass
 ```yaml
 apiVersion: secrets-store.csi.x-k8s.io/v1
@@ -99,6 +99,7 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
 <br><br>
 
 3. How do you troubleshoot if the cluster node pool unable to scale?
+
    Answer:
     1. Check Cluster Autoscaler events/status
     2. Node pool minCount / maxCount and autoscaler configuration
