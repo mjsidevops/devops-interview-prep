@@ -114,11 +114,11 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
    4. Pod Security:
          - Use Pod Security Admission (PSA) and enforce appropriate security standards.
          - For example, prevent containers from:
-            Running as root
-            Using privileged mode
-            Accessing host filesystem
-            Using host networking unnecessarily
-            Adding dangerous Linux capabilities
+            - Running as root
+            - Using privileged mode
+            - Accessing host filesystem
+            - Using host networking unnecessarily
+            - Adding dangerous Linux capabilities
       ```yaml
       securityContext:
         runAsNonRoot: true
