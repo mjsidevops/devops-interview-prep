@@ -110,7 +110,7 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
 4. How do you secure AKS cluster?
    1. Use Private AKS cluster, instead exposing k8s API over public internet
    2. Secure Authentication and Authorization using Microsoft Entra ID, Users, Groups and Managed Identities
-   3. Use RBAC, use k8s role and role binding or azure RBAC wherever applicable. Follow least privilege
+   3. Use RBAC, use k8s RBAC role and role binding or azure RBAC wherever applicable. Follow least privilege
    4. Pod Security:
          - Use Pod Security Admission (PSA) and enforce appropriate security standards.
          - For example, prevent containers from:
@@ -167,3 +167,38 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
    10. Monitoring and auditing: Azure Activity Logs, Azure Monitor, Log Analytics, Microsoft Defender for Cloud, Datadog
    11. Azure Policy: Use Azure Policy for AKS to enforce security rules.
          Ex: "Privileged containers are not allowed."
+
+<br><br>
+
+5. What is container networking? And what are the networking options in AKS?
+    - Container networking is how pods get ip addresses, how it communicates with other pods, nodes and external services and how traffic enters and leaves the cluster.
+    - Networking is implemented via Azure CNI plugins
+    - Other CNI plugins are Calico, planner, cilium
+    - AKS supports only Azure CNI
+    - Types
+       1. Azure CNI - Node Subnet:
+           - Pods gets IP address directly from the node's subnet
+           - Requires more IPs, leads subnet exhaustion
+           - Provides full VNet connectivity for pods, allowing them to be directly reached via their private IP address from connected networks.
+       2. Azure CNI Overlay:
+           - Here each node gets IP from the subnet
+           - Pods gets IP from the Overlay CIDR
+           - Communication with external endpoints uses network address translation (NAT) through the node IP. This model conserves IP address space and supports large-scale clusters.
+         
+       3. Azure CNI Pod Subnet:
+           - Azure CNI Pod Subnet is a networking model in Azure Kubernetes Service (AKS) that assigns IP addresses to pods from a separate subnet than the one used for cluster nodes.
+
+<br><br>
+
+6. What is Network policies?
+    - Controls how pods are allowed to communicates with each other by ingress and egress rules.
+    - In Azure it uses Azure Network policy engine to enforce n/w policies.
+  
+<br><br>
+
+7. How do you achieve High Availability(HA) in AKS?
+    - Control Plane HA will be managed by Azure itself
+    - For node pool HA, provision it in multiple Availability zones (1, 2, 3)
+    - For Pods use HPA or VPA
+    
+
