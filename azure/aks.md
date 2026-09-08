@@ -201,4 +201,25 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
     - For node pool HA, provision it in multiple Availability zones (1, 2, 3)
     - For Pods use HPA or VPA
     
+<br><br>
 
+8. How do you upgrade K8s cluster with Zero-downtime?
+   - Pre requisite:
+      1. Cordon nodes -> Make nodes unschedulable, so no new deployments will happen on the node.
+      2. Inform the team about the upgrade and scheduled upgrade time
+      3. Release notes:
+          - Understand the impact of the upgrade to a existing workload.
+          - Read the change logs
+          - K8s upgrades are irreversible so you can't rollback to the previous version, you need to create new cluster.
+      4. Upgrade the lower environment first, test it properly in Dev and Preprod before moving to Prod
+      5. Upgrade process:
+          1. Upgrade the Control plane
+          2. Upgrade the Node pools
+          3. Upgrade the Add-ons, may be upgrade the ingress to sync with latest k8s version
+      6. K8s will do rolling update, that means it will upgrade 1 node at a time inside nodepools
+      7. A new buffer node will be created with the specified k8s version, then it will cordon and drain the older node.
+      8. Once the older node is fully drained, it will be upgraded to the newer version, same will repeat for all the nodes.
+      9. Force upgrade:
+           - Tells k8s upgrade even if there are blocking conditions.
+           - If normal upgrade fails repeatedly use force upgrade
+           - It will ignore the Pod disruption budget.
