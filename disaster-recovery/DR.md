@@ -48,8 +48,5 @@ DR Strategy:
                 v                     v
              AKS UK               AKS US
                 |                     |
-                +---------+-----------+
-                          |
-                    Data layer
-              (must also be DR-ready)
+               App                   App
 ```
