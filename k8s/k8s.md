@@ -13,7 +13,6 @@
      ```
 
 2. What is Persistant Volume (PV) and Persistant Volume Claim(PVC)?
-    - 
     - Persistant Volume(PV):
        - A Persistent Volume (PV) is a piece of storage that exists independently of a Pod.
        - The main reason we use a PV is that Pod storage is normally temporary. If a Pod is deleted or recreated, data stored inside the Pod's container filesystem can be lost.
