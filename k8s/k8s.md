@@ -12,8 +12,6 @@
       DNS → Pod IP(s)
      ```
 
-     <br><br>
-
 2. What is Persistant Volume (PV) and Persistant Volume Claim(PVC)?
     - 
     - Persistant Volume(PV):
