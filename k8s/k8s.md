@@ -37,6 +37,21 @@
     - But with Storage Class we don't need to create a storage manually, it will auto create it based on the request by PVC.
     - Its uses CSI driver
     - Its dynamic provisioning, you create Storage Class and Kubernetes/CSI driver automatically provisions Storage(Azure Disk) and PV in the backend.
+```yam
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: azure-disk-sc
+
+provisioner: disk.csi.azure.com
+
+parameters:
+  skuName: Premium_LRS
+
+reclaimPolicy: Delete
+
+volumeBindingMode: WaitForFirstConsumer
+```
 
 
 
