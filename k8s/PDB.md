@@ -13,3 +13,6 @@ spec:
     matchLabels:
       app: my-app
 ```
+- You can express the budget in two main ways:
+   - minAvailable — minimum number of pods that must remain available.
+   - maxUnavailable — maximum number of pods that may be unavailable.
