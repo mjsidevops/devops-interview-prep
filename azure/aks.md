@@ -130,7 +130,10 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
       ```
    5. Secure container images before deploying to AKS
    6. Private ACR, access it via Private Endpoint and proper MI(acrPull)
-   7. Network Policy: Use Network Policies to control pod-to-pod communication.
+   7. Network Policy:
+       - Use Network Policies to control pod-to-pod communication.
+       - By default all pods in the k8s cluster can talks to each other.
+       - We can create Network policy with Ingress or Egress rules to control the inbound and outbound traffic to the pod.
         Without network policies:
           ```yaml
           Pod A ───────→ Pod B
@@ -162,10 +165,10 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
                  app: frontend
         ```
         This means only the frontend pods can communicate with the API pods.
-   8. Protect secrets, integrate AKS with Azure Key vault with CSI driver enabled.
-   9. Runtime security for containers, monitor and alert any vulnarabilities using tools like Falco, Aqua
-   10. Monitoring and auditing: Azure Activity Logs, Azure Monitor, Log Analytics, Microsoft Defender for Cloud, Datadog
-   11. Azure Policy: Use Azure Policy for AKS to enforce security rules.
+   9. Protect secrets, integrate AKS with Azure Key vault with CSI driver enabled.
+   10. Runtime security for containers, monitor and alert any vulnarabilities using tools like Falco, Aqua
+   11. Monitoring and auditing: Azure Activity Logs, Azure Monitor, Log Analytics, Microsoft Defender for Cloud, Datadog
+   12. Azure Policy: Use Azure Policy for AKS to enforce security rules.
          Ex: "Privileged containers are not allowed."
 
 <br><br>
