@@ -77,5 +77,15 @@ volumeBindingMode: WaitForFirstConsumer
     - <img width="3024" height="1892" alt="image" src="https://github.com/user-attachments/assets/802c315c-f72e-49ff-8874-320581e981ae" />
 
 
+<br>
+<br>
 
-                     
+8. Affinity:
+    Node affinity:
+      - Node affinity has advanced expression to select the nodes unlike the Node selector.
+      - options:
+         - requiredDuringSchedulingIgnoredDuringExecution -> Pods will not be scheduled if no matching nodes available.
+         - preferredDuringSchedulingIgnoredDuringExecution -> Pods can be scheduled if it did not find the matching node
+         - requiredDuringSchedulingRequiredDuringExecution -> Pod can't scheduled or executi
+         - We could use operator like "in, NotIn, Exists"
+    
