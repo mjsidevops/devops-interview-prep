@@ -23,6 +23,10 @@ Architecture:
        - Runs on each node on the cluster
        - Responsible for making sure that containers are running as expected.
        - Each Kubelet on the nodes will talk to API server
+
+    - kube-proxy:
+       - Responsible for network rules updates.
+       - Responsible to direct traffic to the Services.
      
     - Container runtime:
        - Underlying software that is used to run container.
