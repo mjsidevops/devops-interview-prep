@@ -106,3 +106,8 @@ volumeBindingMode: WaitForFirstConsumer
          ``` kubectl describe node node-name```
       3. top --> to see the cpu n memory of the node
       4. df -h --> to see the storage usage
+<br><br>
+
+10. What is CoreDNS do?
+    - Resolve service names to cluster IPs and Pod names to IPs
+    - CoreDNS pods will be run on Kubernetes-system namespace 
