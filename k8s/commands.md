@@ -61,3 +61,12 @@
 `kubectl rollout restart deployment my-app`
 - Restart the deployment
 - Used when pods are stuck or need to restart all pods
+
+`kubectl scale deployment my-app --replicas=3`
+- to scale the Deployment replicas
+
+`kubectl top node node- name`
+- CPU and MEM usage of nodes
+
+`kubectl top pod pod-name`
+- CPU and MEM usage of Pods
