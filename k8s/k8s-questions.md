@@ -95,3 +95,14 @@ volumeBindingMode: WaitForFirstConsumer
           ``` kubectl logs web```
           ```kubectl logs web -f``` to watch live logs
           ```kubectl logs web --previous``` to see the previous failure logs
+
+<br><br>
+
+9. How do you troubleshoot a node failure?
+   - Steps:
+      1. Check the status of the nodes
+         ``` kubectl get nodes```
+      2. Check the events on the node in case of failed status
+         ``` kubectl describe node node-name```
+      3. top --> to see the cpu n memory of the node
+      4. df -h --> to see the storage usage
