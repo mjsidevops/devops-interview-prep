@@ -80,5 +80,18 @@ volumeBindingMode: WaitForFirstConsumer
 <br>
 <br>
 
-
-    
+8. How do you troubleshoot the application failures? Say user is not able to reach the application?
+    - Steps:
+       1. check the application is reachable using the IP of the web service
+          ``` curl http://<web-service-ip>:node-port ```
+       2. Check the service discovery to the pod, the service is correctly mapping to the pod labels
+          ``` kubectl describe service web-service ```
+          - This will check if the service endpoint is pointing to pod ip with port.
+       3. Check the status of the
+          ``` kubectl get pods ```
+       3. check the events on the pod
+          ``` kubectl describe pod web```
+       4. check the logs of the pod
+          ``` kubectl logs web```
+          ```kubectl logs web -f``` to watch live logs
+          ```kubectl logs web --previous``` to see the previous failure logs
