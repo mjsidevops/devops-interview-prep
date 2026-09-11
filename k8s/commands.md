@@ -1,7 +1,6 @@
 ```kubectl version```
 - shows k8s version
 
-  
 
 ```kubectl cluster-info```
 - Shows information about the Kubernetes control plane and services
@@ -47,5 +46,18 @@
 - to delete the pod
 - can also delete deployments, service, ingress etc
 
-`kubectl rollout status deployment my-app
+`kubectl rollout status deployment my-app`
 - check the status of the deployment
+
+`kubectl rollout history deployment my-app`
+- shows deployment history
+
+`kubectl rollout undo deployment my-app`
+- Rollback to the last deployment
+
+`kubectl rollout undo deployment my-app --to-revision=2`
+- Rollback to the specific version
+
+`kubectl rollout restart deployment my-app`
+- Restart the deployment
+- Used when pods are stuck or need to restart all pods
