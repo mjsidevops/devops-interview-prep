@@ -111,3 +111,10 @@ volumeBindingMode: WaitForFirstConsumer
 10. What is CoreDNS do?
     - Resolve service names to cluster IPs and Pod names to IPs
     - CoreDNS pods will be run on Kubernetes-system namespace 
+
+11. Why Pod can go on Pending state?
+    - It can due to following reasons
+       - enough CPU/MEM resource not available or Node not available 
+       - NodeSelector, the selected node not available
+       - Node or Pod Affinity rules
+       - taint and toleration
