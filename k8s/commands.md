@@ -70,3 +70,17 @@
 
 `kubectl top pod pod-name`
 - CPU and MEM usage of Pods
+
+`kubectl get pod myapp -o yaml`
+- Returns the complete Kubernetes object definition.
+- We can also use json or wide
+
+`kubectl get pod myapp -o jsonpath='{.status.podIP}'`
+- To get specific field
+
+`kubectl edit deployment myapp`
+- To modify the deployment
+- Can also edit the pod
+
+`kubectl patch deploy myapp -p '{"spec":{"replicas":5}}'`
+- useful when you want to modify a specific field of an existing Deployment without editing the entire YAML file.
