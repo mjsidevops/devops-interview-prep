@@ -241,4 +241,24 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
       - If the node is not available, increase the node pool max count
       - Resolve the taint and toleration
       - Check the affinity rules and apply it accordingly 
-      
+
+<br><br>
+
+10. Pod is RUNNING but application is not accessible?
+    - Check the application is listening on the right port
+    - ```kubectl get pod my-app -o yaml```
+    - Check the Service is correctly discovering the pod by comparing the Selector labels in Service and labels in pods and also targetPort is matching.
+    - ```kubectl get endpoints myapp```
+    - Test if the pod is reachable from another pod, may be a busybox pod
+    - ```kubectl exec -it busybox -- curl http://<pod-service-ip>:port```
+    - Check the network policy blocking the traffic, may be the pod allows traffic only from certain application
+    - Now check the Kong ingress is routing the traffic correctly:
+      - Check host, path, backend service, port
+      - Check kong pods and logs
+      -  Check the kong service kong-kong-proxy is has LoadBalancer IP, load balancer is Azure Load Balancer created in the backend.
+    - check Kong Ingress load balancer is reachable
+    - check the application gateway backend is properly set to kong load balancer private DNS zone
+    - troubleshoot the connection from application gateway to kong load balancer, check backend health
+    - Check the SSL certificate issue with Application gateway or Load balancer.
+    - Check WAF rules
+    - Check Firewall DNAT rule is correctly pointing to App gateway
