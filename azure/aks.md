@@ -328,4 +328,31 @@ spec:
         path: /ready
         port: 8080
       periodSeconds:
+```
+
+<br><br>
+
+13. How do you troubleshoot if node is Not Ready in AKS?
+    - AKS continuously monitors the health state of worker nodes, and automatically repairs the nodes if they become unhealthy.
+    1. Check node status
+       ```yaml kubectl get nodes```
+    2. Describe the node to see the events
+       ```yaml kubectl describe node node-name```
+    3. The Conditions and Events section is usually the first major clue.
 ```yaml
+Conditions:
+  Ready              False
+  MemoryPressure     False
+  DiskPressure       False
+  PIDPressure        False
+
+Events:
+  ...
+```
+    
+  4. MemoryPressure=True: The node is running low on memory. Check ```kubectl top node <node-name>```
+  5. DiskPressure=True: The node is running low on disk space. Check `df -h`
+  6. PIDPressure=True: The node has too many processes. Check `ps -e | wc -l`
+  7. Check Kubelet status
+  8. Check the Node resource utilization
+  9. NetworkUnavailable, if Kubelets not able to connect to the API server
