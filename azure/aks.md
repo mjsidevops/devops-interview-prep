@@ -226,3 +226,19 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
            - Tells k8s upgrade even if there are blocking conditions.
            - If normal upgrade fails repeatedly use force upgrade
            - It will ignore the Pod disruption budget.
+
+<br><br>
+
+9. How do you troubleshoot a PENDING pod?
+   - describe the pod to see the events, which will tell us why the pod can't be scheduled.
+      - ```kubectl describe pod my-app```
+      - It could be due to insufficient CPU or MEM resources
+      - Node unavailability, node pool has reached max count 
+      - Node had taint for which pod did not tolerate
+      - Affinity rules, node, pod or anti pod affinity rules might cause the issue
+      - Pod spread constraints topology might be blocking it
+   - How to fix it?
+      - If the node is not available, increase the node pool max count
+      - Resolve the taint and toleration
+      - Check the affinity rules and apply it accordingly 
+      
