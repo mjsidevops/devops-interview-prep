@@ -84,3 +84,11 @@
 
 `kubectl patch deploy myapp -p '{"spec":{"replicas":5}}'`
 - useful when you want to modify a specific field of an existing Deployment without editing the entire YAML file.
+
+`kubectl get endpoints myapp`
+- shows the IP addresses and ports of the Pods that a Kubernetes Service named myapp is currently routing traffic to.
+- output
+- ```
+  NAME    ENDPOINTS
+  myapp   10.244.1.5:8080,10.244.2.7:8080,10.244.3.9:8080
+  ```
