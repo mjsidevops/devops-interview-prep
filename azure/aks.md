@@ -278,3 +278,54 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
        - Database connectivity
        - Liveness probe failure
        - OOMKilled error 
+<br><br>
+
+12. What is Startup, Liveness and Readiness Probe?
+    - Startup probe:
+      - Startup probes verify whether the application within a container is started.
+      - If a startup probe is configured, Kubernetes does not execute liveness or readiness probes until the startup probe succeeds.
+      - This type of probe is only executed at startup, unlike liveness and readiness probes, which are run periodically.
+      - a failed startup probe eventually causes the container to be restarted.
+      - Startup probes are useful for Pods that have containers that take a long time to come into service. 
+    - Liveness probe:
+      - Checks the pod if it is alive and running
+      - If the probe fails the Kubelet will restart the pod.
+      - For example, liveness probes could catch a deadlock, where an application is running, but unable to make progress.
+      - Restarting a container in such a state can help to make the application more available despite bugs.
+   - Readiness Probe:
+      - Readiness probes determine when a container is ready to accept traffic.
+      - This is useful when waiting for an application to perform time-consuming initial tasks, such as establishing network connections, loading files, and warming caches
+      - If readiness fails, Kubernetes removes the pod from the Service endpoints
+    
+   - Example:
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probe-example
+spec:
+  containers:
+  - name: app
+    image: registry.k8s.io/e2e-test-images/agnhost:2.40
+    ports:
+    - containerPort: 8080
+    startupProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+      failureThreshold: 30
+      periodSeconds: 10
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      timeoutSeconds: 3
+      failureThreshold: 3
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: 8080
+      periodSeconds:
+```yaml
