@@ -262,3 +262,19 @@ Note: SecretProvideClass can also create k8s secrets and in pod it can be refere
     - Check the SSL certificate issue with Application gateway or Load balancer.
     - Check WAF rules
     - Check Firewall DNAT rule is correctly pointing to App gateway
+
+<br><br>
+
+11. Troubleshoot why POD is keep RESTARTING?
+    - This will be due to the application failure
+    - Pod will keep restarting and eventually go to CrashLoopBackOff
+    - Describe pod to see if any events
+    - Then check the pod logs, might be previous logs where it failed 
+    - ```kubectl logs myapp-xxx --previous```
+    - I would investigate:
+       - Environment variables missing, may be connectivity to App config where it has config vars
+       - Application startup failure
+       - ConfigMap or Secrets missing
+       - Database connectivity
+       - Liveness probe failure
+       - OOMKilled error 
