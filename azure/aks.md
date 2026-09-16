@@ -356,3 +356,12 @@ Events:
   7. Check Kubelet status
   8. Check the Node resource utilization
   9. NetworkUnavailable, if Kubelets not able to connect to the API server
+
+<br><br>
+
+14. How do you troubleshoot Pod can't pull image from ACR?
+    - I will describe pod to see the events
+    - I will verify:
+      - Correct image name, tag
+      - access to ACR, AKS MI has acrPull permission
+      - network connectivity to ACR from AKS, `az aks check-acr`
