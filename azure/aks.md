@@ -365,3 +365,16 @@ Events:
       - Correct image name, tag
       - access to ACR, AKS MI has acrPull permission
       - network connectivity to ACR from AKS, `az aks check-acr`
+     
+
+<br><br>
+
+15. Troubleshoot production application latency has increased from 200ms to 5 seconds?
+    - Check pods
+    - Describe pod to see if any events on CPU or MEMORY
+    - Check application logs
+    - Check pods connectivity to backend DB or other backends
+    - Check HPA scaling
+    - Check nodes, kubectl top nodes
+    - Check ingress resources and backends
+    - Check if recent deployment is causing any issue
