@@ -64,7 +64,7 @@ module "network" {
   address_space = ["10.10.0.0/16"]
 }
 ```
-
+   - Environment normally contains: backend.tf, provider.tf, main.tf, terraform.tfvars
    - A module normally contains: main.tf, variables.tf and output.tf
    - Output from one module can be consumed in another module
    - For example network module output has
@@ -82,3 +82,8 @@ module "aks" {
 }
 ```
 
+<br><br>
+
+5. What is depends_on?
+   - Terraform normally creates an implicit dependency when one resource references another.
+   - depends_on is used when Terraform cannot automatically determine a dependency.
