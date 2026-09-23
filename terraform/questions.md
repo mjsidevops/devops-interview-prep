@@ -39,22 +39,22 @@ resource "azurerm_resource_group" "rg" {
 4. How do you setup terraform for multiple environments say DEV, QA and PROD?
    - Use terraform modules
    - Example setup
-`
+```yaml
 terraform/
-│
+│. 
 ├── environments/
 │   ├── dev/
 │   ├── staging/
 │   └── prod/
-│
+│  
 └── modules/
     ├── network/
     ├── aks/
     ├── keyvault/
     ├── storage/
     └── monitoring/
-`
-  - Inside environment it will call module
+```
+   - Inside environment it will call module
 
 ```
 module "network" {
@@ -65,15 +65,15 @@ module "network" {
 }
 ```
 
-  - A module normally contains: main.tf, variables.tf and output.tf
-  - Output from one module can be consumed in another module
-  - For example network module output has
+   - A module normally contains: main.tf, variables.tf and output.tf
+   - Output from one module can be consumed in another module
+   - For example network module output has
 ```yaml
 output "vnet_id" {
   value = azurerm_virtual_network.this.id
 }
 ```
-  - Now AKS module can consume this vnet id
+   - Now AKS module can consume this vnet id
 ```yaml
 module "aks" {
   source = "../../modules/aks"
