@@ -18,21 +18,21 @@
      - best for Identical/similar resources
      - access with count.index
      - input can be number or list
-`
+`  
 resource "azurerm_resource_group" "rg" {
   count    = 3
   name     = "app-rg-${count.index}"
   location = "UK South"
 } `
-
-  - for_each
+   
+   - for_each
     - Best for Resources with meaningful names/configurations
     - access with each.key, each.value
     - input is mostly map
 
-  - count creates multiple resource instances using numeric indexes, while for_each creates instances using keys from a map or set.
-  - I use count when the resources are essentially identical and quantity-based.
-  - I prefer for_each when resources have meaningful names or different configurations because the resource addresses are key-based and are generally more stable when items are added or removed.
+   - count creates multiple resource instances using numeric indexes, while for_each creates instances using keys from a map or set.
+   - I use count when the resources are essentially identical and quantity-based.
+   - I prefer for_each when resources have meaningful names or different configurations because the resource addresses are key-based and are generally more stable when items are added or removed.
 
 <br><br>
 
@@ -54,7 +54,7 @@ terraform/
     ├── storage/
     └── monitoring/
 `
- - Inside environment it will call module
+  - Inside environment it will call module
 
 ```
 module "network" {
@@ -65,15 +65,15 @@ module "network" {
 }
 ```
 
- - A module normally contains: main.tf, variables.tf and output.tf
- - Output from one module can be consumed in another module
- - For example network module output has
+  - A module normally contains: main.tf, variables.tf and output.tf
+  - Output from one module can be consumed in another module
+  - For example network module output has
 ```yaml
 output "vnet_id" {
   value = azurerm_virtual_network.this.id
 }
 ```
- - Now AKS module can consume this vnet id
+  - Now AKS module can consume this vnet id
 ```yaml
 module "aks" {
   source = "../../modules/aks"
