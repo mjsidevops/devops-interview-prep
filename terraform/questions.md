@@ -37,8 +37,8 @@ resource "azurerm_resource_group" "rg" {
 <br><br>
 
 4. How do you setup terraform for multiple environments say DEV, QA and PROD?
-   - Use terraform modules
-   - Example setup
+  - Use terraform modules
+  - Example setup
 ```yaml
 terraform/
 │. 
